@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanju 💖</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: "Comic Sans MS", "Poppins", cursive;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ff5f9e, #ff9a9e);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 22px;
+  animation: float 5s linear infinite;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-120vh);
+    opacity: 0;
+  }
+}
+
+/* Card */
+.card {
+  background: white;
+  width: 90%;
+  max-width: 360px;
+  padding: 25px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  animation: pop 0.6s ease;
+  z-index: 10;
+}
+
+@keyframes pop {
+  from {transform: scale(0.4); opacity: 0;}
+  to {transform: scale(1); opacity: 1;}
+}
+
+h1 {
+  color: #ff2f6e;
+  font-size: 26px;
+}
+
+p {
+  font-size: 18px;
+}
+
+.buttons {
+  margin-top: 20px;
+  position: relative;
+  height: 60px;
+}
+
+button {
+  padding: 12px 22px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+#yesBtn {
+  background: #ff2f6e;
+  color: white;
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  50% {transform: scale(1.08);}
+}
+
+#noBtn {
+  background: #eee;
+  position: absolute;
+  right: 0;
+}
+
+.funny {
+  margin-top: 15px;
+  min-height: 24px;
+  color: #ff2f6e;
+}
+
+/* Success */
+.success {
+  display: none;
+}
+
+.emojis {
+  font-size: 32px;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  50% {transform: translateY(-10px);}
+}
+
+/* Music */
+.music {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: none;
+  font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<button class="music" onclick="toggleMusic()">🎵</button>
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/23/audio_7b5a24b68b.mp3">
+</audio>
+
+<div class="card" id="card">
+  <h1>Hi Beautiful Sanju 💖</h1>
+  <p>Will you be my Valentine? 😘</p>
+
+  <div class="buttons">
+    <button id="yesBtn">Yes 💘</button>
+    <button id="noBtn">No 😒</button>
+  </div>
+
+  <div class="funny" id="funny"></div>
+</div>
+
+<div class="card success" id="success">
+  <h1>YAYYYY 😍💥</h1>
+  <p>Happy Valentine’s Day<br><b>Sanjana 💖</b></p>
+
+  <div class="emojis">💑💞💋💘</div>
+
+  <p>
+    Now you are officially stuck with me forever 😆❤️
+  </p>
+
+  <p style="margin-top:15px; font-size:20px; color:#ff2f6e;">
+    👉 Meet me at <b>Hotel Regal 😏🏨</b>
+  </p>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const funny = document.getElementById("funny");
+const card = document.getElementById("card");
+const success = document.getElementById("success");
+const music = document.getElementById("music");
+
+const messages = [
+  "Nice try Sanju 😜",
+  "No button said BYE 😂",
+  "There is no escape 😈",
+  "Why are you like this 🤣",
+  "Sanjuuuu come on 😆"
+];
+
+/* NO button runs away forever */
+function moveNo() {
+  const x = Math.random() * 220 - 110;
+  const y = Math.random() * 160 - 80;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+  funny.innerText =
+    messages[Math.floor(Math.random() * messages.length)];
+}
+
+noBtn.addEventListener("mouseenter", moveNo);
+noBtn.addEventListener("click", moveNo);
+
+/* YES button */
+yesBtn.addEventListener("click", () => {
+  funny.innerText = "Processing your YES... 🤭";
+  setTimeout(() => {
+    card.style.display = "none";
+    success.style.display = "block";
+    confetti();
+  }, 1200);
+});
+
+/* Hearts */
+function heart() {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerText = Math.random() > 0.5 ? "💖" : "💘";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.animationDuration = Math.random() * 2 + 3 + "s";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 5000);
+}
+setInterval(heart, 350);
+
+/* Confetti */
+function confetti() {
+  for (let i = 0; i < 35; i++) {
+    const c = document.createElement("div");
+    c.innerText = "💘";
+    c.style.position = "absolute";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.top = "-20px";
+    c.style.fontSize = "24px";
+    c.style.animation = "float 3s linear";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 3000);
+  }
+}
+
+/* Music */
+function toggleMusic() {
+  music.paused ? music.play() : music.pause();
+}
+</script>
+
+</body>
+</html>
