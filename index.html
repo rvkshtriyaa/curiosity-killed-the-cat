@@ -5,10 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sanju 💖</title>
 
+<!-- Google Font: Patrick Hand -->
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
 <style>
 * {
   box-sizing: border-box;
-  font-family: "Comic Sans MS", "Poppins", cursive;
+  font-family: 'Patrick Hand', cursive; /* Fun handwritten font */
 }
 
 body {
@@ -56,7 +59,7 @@ body {
 
 h1 {
   color: #ff2f6e;
-  font-size: 26px;
+  font-size: 28px;
 }
 
 p {
@@ -97,6 +100,7 @@ button {
   margin-top: 15px;
   min-height: 24px;
   color: #ff2f6e;
+  font-weight: bold;
 }
 
 /* Success */
@@ -105,7 +109,7 @@ button {
 }
 
 .emojis {
-  font-size: 32px;
+  font-size: 36px;
   animation: bounce 1s infinite;
 }
 
@@ -130,11 +134,13 @@ button {
 
 <body>
 
+<!-- Music toggle -->
 <button class="music" onclick="toggleMusic()">🎵</button>
 <audio id="music" loop>
   <source src="https://cdn.pixabay.com/audio/2022/03/23/audio_7b5a24b68b.mp3">
 </audio>
 
+<!-- Landing Card -->
 <div class="card" id="card">
   <h1>Hi Beautiful Sanju 💖</h1>
   <p>Will you be my Valentine? 😘</p>
@@ -147,15 +153,14 @@ button {
   <div class="funny" id="funny"></div>
 </div>
 
+<!-- Success Card -->
 <div class="card success" id="success">
   <h1>YAYYYY 😍💥</h1>
   <p>Happy Valentine’s Day<br><b>Sanjana 💖</b></p>
 
   <div class="emojis">💑💞💋💘</div>
 
-  <p>
-    Now you are officially stuck with me forever 😆❤️
-  </p>
+  <p>Now you are officially stuck with me forever 😆❤️</p>
 
   <p style="margin-top:15px; font-size:20px; color:#ff2f6e;">
     👉 Meet me at <b>Hotel Regal 😏🏨</b>
@@ -183,9 +188,7 @@ function moveNo() {
   const x = Math.random() * 220 - 110;
   const y = Math.random() * 160 - 80;
   noBtn.style.transform = `translate(${x}px, ${y}px)`;
-
-  funny.innerText =
-    messages[Math.floor(Math.random() * messages.length)];
+  funny.innerText = messages[Math.floor(Math.random() * messages.length)];
 }
 
 noBtn.addEventListener("mouseenter", moveNo);
@@ -201,7 +204,7 @@ yesBtn.addEventListener("click", () => {
   }, 1200);
 });
 
-/* Hearts */
+/* Hearts floating */
 function heart() {
   const h = document.createElement("div");
   h.className = "heart";
@@ -213,7 +216,7 @@ function heart() {
 }
 setInterval(heart, 350);
 
-/* Confetti */
+/* Confetti on YES */
 function confetti() {
   for (let i = 0; i < 35; i++) {
     const c = document.createElement("div");
@@ -228,7 +231,7 @@ function confetti() {
   }
 }
 
-/* Music */
+/* Music toggle */
 function toggleMusic() {
   music.paused ? music.play() : music.pause();
 }
